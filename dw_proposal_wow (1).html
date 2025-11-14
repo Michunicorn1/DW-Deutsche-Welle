@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michelle Aranguren x DW Colombia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f3460 100%);
+            z-index: -1;
+        }
+
+        .dw-accent {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 129, 204, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .accent-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .accent-2 { top: 60%; right: 10%; animation-delay: 2s; }
+        .accent-3 { bottom: 10%; left: 50%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .dw-logo {
+            font-size: 4em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #0081CC, #00A8E8, #0081CC);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(0, 129, 204, 0.5);
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: #00A8E8;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.3), rgba(0, 168, 232, 0.3));
+            backdrop-filter: blur(20px);
+            padding: 30px 60px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 1.4em;
+            font-weight: 600;
+            border: 2px solid rgba(0, 129, 204, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 129, 204, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tagline:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(0, 129, 204, 0.5);
+        }
+
+        .section {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.1), rgba(0, 168, 232, 0.05));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            margin: 50px 0;
+            animation: fadeInUp 1s ease;
+            border: 1px solid rgba(0, 129, 204, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 129, 204, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section h2 {
+            font-size: 3em;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, #00A8E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid rgba(0, 129, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 129, 204, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #0081CC;
+            box-shadow: 0 20px 60px rgba(0, 129, 204, 0.4);
+        }
+
+        .card h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #00A8E8;
+            font-weight: 800;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .card li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .card li:before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #0081CC;
+            font-size: 1.5em;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+            position: relative;
+            padding-left: 80px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: -40px;
+            width: 4px;
+            background: linear-gradient(180deg, #0081CC, #00A8E8);
+        }
+
+        .timeline-item:last-child:before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #0081CC, #00A8E8);
+            border-radius: 50%;
+            border: 5px solid rgba(0, 129, 204, 0.3);
+            box-shadow: 0 0 20px rgba(0, 129, 204, 0.6);
+            z-index: 1;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 129, 204, 0.6); }
+            50% { box-shadow: 0 0 40px rgba(0, 129, 204, 1); }
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1));
+            padding: 35px;
+            border-radius: 20px;
+            flex: 1;
+            border: 1px solid rgba(0, 129, 204, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: #0081CC;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #00A8E8;
+            font-weight: 700;
+        }
+
+        .timeline-content p {
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.3), rgba(0, 168, 232, 0.2));
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 129, 204, 0.4);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.08) rotate(-2deg);
+            border-color: #0081CC;
+            box-shadow: 0 15px 40px rgba(0, 129, 204, 0.5);
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #0081CC, #00A8E8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            margin: 60px 0;
+            border: 2px solid rgba(0, 129, 204, 0.4);
+            box-shadow: 0 30px 80px rgba(0, 129, 204, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 25px 60px;
+            background: linear-gradient(135deg, #0081CC, #00A8E8);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 800;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            margin: 15px;
+            box-shadow: 0 10px 30px rgba(0, 129, 204, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 129, 204, 0.6);
+        }
+
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-icon {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.3), rgba(0, 168, 232, 0.2));
+            padding: 20px 35px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 129, 204, 0.3);
+            cursor: pointer;
+        }
+
+        .tech-icon:hover {
+            background: linear-gradient(135deg, #0081CC, #00A8E8);
+            transform: scale(1.15) rotate(-3deg);
+            box-shadow: 0 10px 30px rgba(0, 129, 204, 0.5);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .interactive-demo {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.15), rgba(0, 168, 232, 0.05));
+            border-radius: 25px;
+            margin: 40px 0;
+            border: 1px solid rgba(0, 129, 204, 0.3);
+        }
+
+        .demo-button {
+            padding: 20px 50px;
+            background: rgba(0, 129, 204, 0.3);
+            border: 2px solid #0081CC;
+            color: #fff;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px;
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(135deg, #0081CC, #00A8E8);
+            transform: scale(1.08);
+            box-shadow: 0 10px 30px rgba(0, 129, 204, 0.5);
+        }
+
+        .demo-button.active {
+            background: linear-gradient(135deg, #0081CC, #00A8E8);
+            box-shadow: 0 10px 30px rgba(0, 129, 204, 0.5);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 129, 204, 0.4);
+            margin: 30px 0;
+            font-size: 1.3em;
+            line-height: 1.9;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .highlight-box:hover {
+            transform: scale(1.02);
+            border-color: #0081CC;
+            box-shadow: 0 15px 40px rgba(0, 129, 204, 0.4);
+        }
+
+        .interactive-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .click-me {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(0, 129, 204, 0.3);
+            border-radius: 10px;
+            font-size: 0.9em;
+            margin-top: 10px;
+            border: 1px solid rgba(0, 129, 204, 0.5);
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero .subtitle {
+                font-size: 1.3em;
+            }
+            .section h2 {
+                font-size: 2em;
+            }
+            .section {
+                padding: 40px 30px;
+            }
+            .tagline {
+                padding: 20px 30px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="dw-accent accent-1"></div>
+    <div class="dw-accent accent-2"></div>
+    <div class="dw-accent accent-3"></div>
+
+    <div class="container">
+        <div class="hero">
+            <div class="dw-logo">DW</div>
+            <h1>🎬 Michelle Aranguren</h1>
+            <p class="subtitle">PROPUESTA DE VALOR · PRÁCTICA 2 MESES</p>
+            <div class="tagline" onclick="this.style.transform='scale(1.1) rotate(2deg)'">
+                ✨ Sería un HONOR ser parte de este equipo increíble
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📰 Por qué quiero estar en DW</h2>
+            <div class="highlight-box" onclick="this.style.background='linear-gradient(135deg, rgba(0, 129, 204, 0.3), rgba(0, 168, 232, 0.2))'">
+                DW Colombia representa todo lo que admiro en el periodismo:<br>
+                <strong>Rigor, innovación, impacto y voz internacional.</strong><br><br>
+                Poder aprender de este equipo, aportar a través de la ciencia,<br>
+                la tecnología y la innovación sería un sueño hecho realidad.<br><br>
+                Me siento verdaderamente <strong>honrada</strong> por esta oportunidad. 🌟
+                <div class="click-me">👆 Click aquí</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💡 Mi Propuesta de Valor</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">🔬</div>
+                    <div class="stat-label">Ciencia & Tecnología</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">🚀</div>
+                    <div class="stat-label">Innovación AI</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Energía & Pasión</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2X</div>
+                    <div class="stat-label">Hero Awards PGD</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Lo que puedo aportar</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; opacity: 0.9;">
+                👇 Haz click en cada área para explorar 👇
+            </p>
+            <div class="cards">
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>✂️ Edición de Video</h3>
+                    <ul>
+                        <li>Adobe Premiere & Avid</li>
+                        <li>Edición ágil y creativa</li>
+                        <li>Optimización para multiplataforma</li>
+                        <li>Integración de subtítulos y gráficos</li>
+                    </ul>
+                </div>
+
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>📊 Gestión & Estrategia</h3>
+                    <ul>
+                        <li>Project management (SmartSheet, BI)</li>
+                        <li>Análisis de métricas digitales</li>
+                        <li>Optimización de workflows</li>
+                        <li>Documentación de best practices</li>
+                    </ul>
+                </div>
+
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>🤖 AI & Tech Innovation</h3>
+                    <ul>
+                        <li>Implementación de herramientas AI</li>
+                        <li>Automatización de procesos</li>
+                        <li>NLP para análisis de contenido</li>
+                        <li>Visión de futuro tech</li>
+                    </ul>
+                </div>
+
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>📝 Contenido Multiplataforma</h3>
+                    <ul>
+                        <li>Redacción periodística (bne IntelliNews)</li>
+                        <li>Community management</li>
+                        <li>SEO & Growth hacking</li>
+                        <li>Investigación profunda</li>
+                    </ul>
+                </div>
+
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>🎥 Producción Audiovisual</h3>
+                    <ul>
+                        <li>Experiencia en CityTV</li>
+                        <li>Manejo de cámara y grabación</li>
+                        <li>Apoyo a Felipe en campo</li>
+                        <li>Coordinación logística</li>
+                    </ul>
+                </div>
+
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>🌍 Multilingüe & Global</h3>
+                    <ul>
+                        <li>Inglés/Español nativo</li>
+                        <li>Alemán profesional</li>
+                        <li>Perspectiva internacional</li>
+                        <li>Traducción especializada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📅 Roadmap 2 Meses</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; opacity: 0.9;">
+                👇 Hover sobre cada fase para más detalles 👇
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Semanas 1-2: Inmersión & Setup</h3>
+                        <p>• Conocimiento profundo del flujo de trabajo DW<br>
+                        • Configuración de herramientas y accesos<br>
+                        • Primera edición de video de prueba<br>
+                        • Propuesta de optimizaciones iniciales</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Semanas 3-4: Producción & AI Integration</h3>
+                        <p>• Edición regular de contenidos<br>
+                        • Implementación de herramientas AI para agilizar procesos<br>
+                        • Apoyo en grabaciones con Felipe (días coordinados según necesidad)<br>
+                        • Creación de templates y workflows</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Semanas 5-6: Escalamiento</h3>
+                        <p>• Gestión autónoma de proyectos de video<br>
+                        • Análisis de métricas y optimización<br>
+                        • Investigación y propuestas de contenido<br>
+                        • Documentación de best practices</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Semanas 7-8: Innovation & Future</h3>
+                        <p>• Presentación de estrategia AI para DW<br>
+                        • Portfolio completo de trabajo realizado<br>
+                        • Propuesta de continuidad y crecimiento<br>
+                        • Exploración de nuevas oportunidades</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚡ Mi Diferencial Tech</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; opacity: 0.9;">
+                👇 Click en cada tecnología 👇
+            </p>
+            <div class="tech-icons">
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">Python</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">Java</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">C++</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">HTML/CSS</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">AI Tools</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">Power BI</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">Adobe Suite</div>
+                <div class="tech-icon" onclick="this.style.background='linear-gradient(135deg, #0081CC, #00A8E8)'">Avid</div>
+            </div>
+            <div class="highlight-box">
+                <strong>La AI no es una amenaza, es una OPORTUNIDAD.</strong><br>
+                Puedo ayudar a DW a estar a la vanguardia antes que otros medios.<br>
+                Automatización inteligente = más tiempo para creatividad y profundidad.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔥 Mi Compromiso</h2>
+            <div class="cards">
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>⏰ Disponibilidad</h3>
+                    <p>Trabajo base: 8:30am-5:00pm (Programmatic)<br>
+                    <strong>Para DW:</strong> Horarios flexibles adicionales<br>
+                    Apoyo en campo con Felipe: Días coordinados según necesidad de producción</p>
+                </div>
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>💪 Entrega</h3>
+                    <p>100% remoto con resultados tangibles<br>
+                    Hero Award winner = comprobada excelencia<br>
+                    Multitasking experta con historial probado</p>
+                </div>
+                <div class="card interactive-card" onclick="this.classList.toggle('active'); this.style.background=this.classList.contains('active')?'linear-gradient(135deg, rgba(0, 129, 204, 0.4), rgba(0, 168, 232, 0.3))':'linear-gradient(135deg, rgba(0, 129, 204, 0.2), rgba(0, 168, 232, 0.1))'">
+                    <h3>🌱 Visión</h3>
+                    <p>2 meses = base sólida<br>
+                    Después: explorar crecimiento mutuo<br>
+                    Construir algo grande JUNTOS</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="interactive-demo">
+            <h2 style="margin-bottom: 30px;">🎮 ¿Quieres ver más?</h2>
+            <button class="demo-button" onclick="showPortfolio()">📂 Ver Portfolio</button>
+            <button class="demo-button" onclick="showContact()">📧 Hablemos</button>
+            <button class="demo-button" onclick="showIdeas()">💡 Ideas AI para DW</button>
+            
+            <div id="portfolio" class="hidden" style="margin-top: 40px; text-align: left; background: rgba(0, 129, 204, 0.2); padding: 30px; border-radius: 20px; border: 2px solid rgba(0, 129, 204, 0.4); animation: fadeInUp 0.5s ease;">
+                <h3 style="color: #00A8E8; margin-bottom: 20px; font-size: 1.8em;">📌 Links de Interés:</h3>
+                <p style="line-height: 2; font-size: 1.2em;">
+                🔗 LinkedIn: linkedin.com/in/michellearanguren<br>
+                🔗 Portfolio: muckrack.com/cynthia-michelle-aranguren-hernandez<br>
+                🔗 YouTube: youtube.com/@MichelleAranguren<br>
+                🔗 Behance: behance.net/michellearanguren</p>
+            </div>
+
+            <div id="contact" class="hidden" style="margin-top: 40px; text-align: left; background: rgba(0, 129, 204, 0.2); padding: 30px; border-radius: 20px; border: 2px solid rgba(0, 129, 204, 0.4); animation: fadeInUp 0.5s ease;">
+                <h3 style="color: #00A8E8; margin-bottom: 20px; font-size: 1.8em;">📬 Contáctame:</h3>
+                <p style="line-height: 2; font-size: 1.2em;">
+                📧 Email: michthebest1@yahoo.co.uk<br>
+                📍 Ubicación: Bogotá, Colombia<br>
+                ⏰ Disponible para reunión cuando quieran<br>
+                💬 Lista para empezar AHORA</p>
+            </div>
+
+            <div id="ideas" class="hidden" style="margin-top: 40px; text-align: left; background: rgba(0, 129, 204, 0.2); padding: 30px; border-radius: 20px; border: 2px solid rgba(0, 129, 204, 0.4); animation: fadeInUp 0.5s ease;">
+                <h3 style="color: #00A8E8; margin-bottom: 20px; font-size: 1.8em;">🤖 Ideas AI que puedo implementar en DW:</h3>
+                <ul style="line-height: 2.2; margin-left: 20px; font-size: 1.1em;">
+                    <li>Transcripción automática de entrevistas con AI</li>
+                    <li>Generación de subtítulos multilingües en segundos</li>
+                    <li>Análisis de tendencias y temas emergentes con NLP</li>
+                    <li>Optimización de thumbnails con computer vision</li>
+                    <li>Automatización de tareas repetitivas de edición</li>
+                    <li>Asistente AI para investigación periodística</li>
+                    <li>SEO inteligente para contenido multiplataforma</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="margin-bottom: 40px; font-size: 3.5em;">🚀 Hagamos Historia Juntos</h2>
+            <p style="font-size: 1.5em; margin-bottom: 40px; line-height: 1.8;">
+                2 meses para demostrarte lo que puedo hacer.<br>
+                Después, el cielo es el límite. 🌟
+            </p>
+            <button class="cta-button" onclick="window.open('mailto:michthebest1@yahoo.co.uk?subject=Práctica DW Colombia - Michelle Aranguren', '_blank')">
+                ✉️ Conversemos
+            </button>
+            <button class="cta-button" onclick="showConfetti()">
+                🎬 Let's Do This!
+            </button>
+        </div>
+
+        <div style="text-align: center; padding: 60px 20px; opacity: 0.8;">
+            <p style="font-size: 1.3em; line-height: 1.8;">
+                Hecho con 💙 por Michelle Aranguren<br>
+                <em>"Working smarter, not harder. Always."</em>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let confettiShown = false;
+
+        function showPortfolio() {
+            toggleSection('portfolio');
+        }
+
+        function showContact() {
+            toggleSection('contact');
+        }
+
+        function showIdeas() {
+            toggleSection('ideas');
+        }
+
+        function toggleSection(id) {
+            const sections = ['portfolio', 'contact', 'ideas'];
+            const buttons = document.querySelectorAll('.demo-button');
+            
+            sections.forEach(section => {
+                const el = document.getElementById(section);
+                if (section === id) {
+                    el.classList.toggle('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+
+            buttons.forEach(btn => {
+                if (btn.textContent.includes(id === 'portfolio' ? 'Portfolio' : id === 'contact' ? 'Hablemos' : 'Ideas')) {
+                    btn.classList.toggle('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function showConfetti() {
+            if (!confettiShown) {
+                alert('¡Gracias por tu tiempo! Espero poder ser parte del equipo DW 🎬✨\n\n¡Construyamos el futuro del periodismo JUNTOS! 🚀💙');
+                confettiShown = true;
+                createConfetti();
+            } else {
+                window.open('mailto:michthebest1@yahoo.co.uk?subject=¡SÍ! Hablemos de la práctica en DW', '_blank');
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#0081CC', '#00A8E8', '#fff'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+                document.body.appendChild(confetti);
+
+                const duration = Math.random() * 3 + 2;
+                const fallDistance = Math.random() * 100 + 100;
+                
+                confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${fallDistance}vh) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+
+                setTimeout(() => confetti.remove(), duration * 1000);
+            }
+        }
+
+        // Animación de entrada para las cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const interactiveCards = document.querySelectorAll('.interactive-card');
+            interactiveCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, index * 150);
+            });
+
+            // Efecto de parallax suave
+            document.addEventListener('mousemove', (e) => {
+                const accents = document.querySelectorAll('.dw-accent');
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                accents.forEach((accent, index) => {
+                    const speed = (index + 1) * 20;
+                    accent.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
